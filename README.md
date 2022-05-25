@@ -4,5 +4,5 @@
 
 ![](/.Resources/Blue_Bird.svg)
 
-Current Testing Link: [phonzi.github.io/Bird_Game/](https://phonzi.github.io/Bird_Game/)
+Current Testing Link: [phonzi.github.io/Bird_Game/index.html](https://phonzi.github.io/Bird_Game/index.html)
 
