@@ -1,0 +1,14 @@
+<svg width="90" height="57" viewBox="0 0 90 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M20 26V21.5C29.2 20.7 32.8333 17.5 33.5 16L38.5 18L47 21L56 24.5L63.5 27L66.5 28.5V30.5L65 31L60 34L54 37L48 39.5H38L31 38.5L25.5 34.5L21 30.5L20 26Z" fill="#FF0000" stroke="black"/>
+<path d="M81 17.5L62 26.5L64 27.5L88 20.5L81 17.5Z" fill="#C80000" stroke="black"/>
+<path d="M45.5 40H42L41 55L43 55.5L45.5 40Z" fill="black" stroke="black"/>
+<path d="M36 55L37 40H40L38 55H36Z" fill="black" stroke="black"/>
+<ellipse cx="24" cy="10.5" rx="11" ry="10.5" fill="black"/>
+<path d="M1 20.5C1 20.1667 3.5 18.2 13.5 13C12.3 15 18 19 21 20.5H1Z" fill="black" stroke="black"/>
+<path d="M30 28L32 23.5C32.8 22.7 55 26.8333 66 29L50 35L35.5 36L31 33.5L30 28Z" fill="#C80000"/>
+<path d="M31.584 24C27.5351 31.7483 28.7498 43.6397 66 29.2183" stroke="black"/>
+<rect x="19" y="20" width="3" height="1" fill="black"/>
+<path d="M34 10.5C34 15.7467 29.5228 20 24 20C18.4772 20 14 15.7467 14 10.5C14 5.25329 18.4772 1 24 1C29.5228 1 34 5.25329 34 10.5Z" fill="#FF0000"/>
+<path d="M34 10.5C34 15.7467 29.5228 20 24 20C18.4772 20 14 15.7467 14 10.5C14 5.25329 18.4772 1 24 1C29.5228 1 34 5.25329 34 10.5Z" stroke="black"/>
+<circle cx="22.5" cy="9.5" r="2.5" fill="black"/>
+</svg>
