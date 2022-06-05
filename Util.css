@@ -1,0 +1,14 @@
+
+.dark_bg{
+	background-color:#334455;
+}
+
+.f{
+	display:flex;
+}
+
+.centered{
+	justify-content:center;
+	align-items:center;
+}
+
