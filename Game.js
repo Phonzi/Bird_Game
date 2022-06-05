@@ -20,7 +20,8 @@ circle.y=100;
 
 //Function that dictates how the circle moves
 function move_circle(obj){
-	let speed=5;
+	//zoom
+	let speed=20;
 	if (right_key_pressed()){
 		obj.x+=speed;
 	}
@@ -57,5 +58,3 @@ plat.initialize();
 function game_loop(){
 	circle_sprite.move();
 }
-
-
