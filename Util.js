@@ -44,36 +44,6 @@ function up_key_pressed(){
 	return keys_pressed["Up_Arrow"]
 }
 
-class Block{
-	constructor(display_object){
-		this.display=display_object;
-	}
-	initialize(){
-		app.stage.addChild(this.display);
-	}
-}
-
-class Movable extends Block{
-	constructor(display_object,movement_function){
-		super(display_object);
-		this.movement=movement_function;
-	}
-	move(){
-		this.movement(this.display);
-	}
-}
-
-
-class Platform extends Block{
-	constructor(x,y,width,height,border=2){
-		let graphics=new PIXI.Graphics();
-		graphics.beginFill(0x3377bb);
-		graphics.drawRect(x,y,width,height);
-		graphics.beginFill(0x000000);
-		graphics.drawRect(x+border,y+border,width-2*border,height-2*border);
-		super(graphics);
-	}
-}
 
 
 
