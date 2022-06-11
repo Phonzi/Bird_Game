@@ -93,40 +93,22 @@ function move_bird(b) {
 		obj.y=600-obj.height;
 	}
 	block=b.fields["Obstacle"];
-	position=detectCollision(o,block);
+	position=detectCollision(b,block);
 	if(position["right"]==0 && position["left"]==-1 && Math.abs(position["top"]+position["bottom"])<2){
 		obj.x=block.display.x-obj.width;
-		position=detectCollision(o,block);
+		position=detectCollision(b,block);
 	}
 	if(position["right"]==1 && position["left"]==0 && Math.abs(position["top"]+position["bottom"])<2){
 		obj.x=block.display.x+block.display.width;
-		position=detectCollision(o,block);
+		position=detectCollision(b,block);
 	}
 	if(position["bottom"]==0 && position["top"]==-1 && Math.abs(position["left"]+position["right"])<2){
 		obj.y=block.display.y-obj.width;
-		position=detectCollision(o,block);
+		position=detectCollision(b,block);
 	}
 	if(position["bottom"]==1 && position["top"]==0 && Math.abs(position["left"]+position["right"])<2){
 		obj.y=block.display.y+block.display.height;
 	}
-}
-
-
-//Collision detection - kinda janky around corners but actual game physics will be more complex
-if(position["right"]==0 && position["left"]==-1 && Math.abs(position["top"]+position["bottom"])<2){
-	obj.x=block.display.x-obj.width;
-	position=detectCollision(o,block);
-}
-if(position["right"]==1 && position["left"]==0 && Math.abs(position["top"]+position["bottom"])<2){
-	obj.x=block.display.x+block.display.width;
-	position=detectCollision(o,block);
-}
-if(position["bottom"]==0 && position["top"]==-1 && Math.abs(position["left"]+position["right"])<2){
-	obj.y=block.display.y-obj.width;
-	position=detectCollision(o,block);
-}
-if(position["bottom"]==1 && position["top"]==0 && Math.abs(position["left"]+position["right"])<2){
-	obj.y=block.display.y+block.display.height;
 }
 
 let plat=new Block(get_platform(300,300,250,200));
@@ -136,7 +118,7 @@ plat.initialize();
 let circle_sprite=new Movable(circle,{"Obstacle":plat},move_circle);
 circle_sprite.initialize();
 
-let bird1 = new Movable(get_bird(300, 100), {"Obstacle":plat}, move_circle);
+let bird1 = new Movable(get_bird(300, 100), {"Obstacle":plat}, move_bird);
 bird1.initialize();
 
 //Game Loop
