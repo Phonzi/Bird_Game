@@ -11,8 +11,8 @@ circle.y=100;
 //Function that dictates how the circle moves
 function move_circle(o){
 	//zoom
-	let speed=20;
-	
+	let speed=10;
+
 	obj=o.display;
 
 	if (right_key_pressed()){
@@ -41,7 +41,7 @@ function move_circle(o){
 	}
 	block=o.fields["Obstacle"];
 	position=detectCollision(o,block);
-	
+
 
 	//Collision detection - kinda janky around corners but actual game physics will be more complex
 	if(position["right"]==0 && position["left"]==-1 && Math.abs(position["top"]+position["bottom"])<2){
@@ -70,12 +70,15 @@ plat.initialize();
 let circle_sprite=new Movable(circle,{"Obstacle":plat},move_circle);
 circle_sprite.initialize();
 
+let bird1 = new Movable(get_bird(300, 100), {"Obstacle":plat}, move_circle);
+bird1.initialize();
 
 //Game Loop
 i=0
 function game_loop(){
 	circle_sprite.move();
+	bird1.move();
 	plat.display.width+=Math.sin(i)/3;//*Sin wave vibes*
 	plat.display.height+=Math.cos(i)/3;
-	i+=.01;	
+	i+=.01;
 }
