@@ -53,7 +53,7 @@ function move_circle(o){
 		position=detectCollision(o,block);
 	}
 	if(position["bottom"]==0 && position["top"]==-1 && Math.abs(position["left"]+position["right"])<2){
-		obj.y=block.display.y-obj.width;
+		obj.y=block.display.y-obj.height;
 		position=detectCollision(o,block);
 	}
 	if(position["bottom"]==1 && position["top"]==0 && Math.abs(position["left"]+position["right"])<2){
@@ -83,8 +83,8 @@ function move_bird(b) {
 	if (obj.x<0){
 		obj.x=0;
 	}
-	if (obj.x+obj.height>900){
-		obj.x=900-obj.height;
+	if (obj.x+obj.width>900){
+		obj.x=900-obj.width;
 	}
 	if (obj.y<0){
 		obj.y=0;
@@ -103,7 +103,7 @@ function move_bird(b) {
 		position=detectCollision(b,block);
 	}
 	if(position["bottom"]==0 && position["top"]==-1 && Math.abs(position["left"]+position["right"])<2){
-		obj.y=block.display.y-obj.width;
+		obj.y=block.display.y-obj.height;
 		position=detectCollision(b,block);
 	}
 	if(position["bottom"]==1 && position["top"]==0 && Math.abs(position["left"]+position["right"])<2){
@@ -118,7 +118,8 @@ plat.initialize();
 let circle_sprite=new Movable(circle,{"Obstacle":plat},move_circle);
 circle_sprite.initialize();
 
-let bird1 = new Movable(get_bird(300, 100), {"Obstacle":plat}, move_bird);
+
+let bird1 = new Movable(get_bird(300,100), {"Obstacle":plat}, move_bird);
 bird1.initialize();
 
 //Game Loop
