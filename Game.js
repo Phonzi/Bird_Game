@@ -69,16 +69,16 @@ function move_bird(b) {
 	obj=b.display;
 
 	if (right_key_pressed()){
-		obj.x-=speed;
-	}
-	if (left_key_pressed()){
 		obj.x+=speed;
 	}
+	if (left_key_pressed()){
+		obj.x-=speed;
+	}
 	if (up_key_pressed()){
-		obj.y+=speed;
+		obj.y-=speed;
 	}
 	if (down_key_pressed()){
-		obj.y-=speed;
+		obj.y+=speed;
 	}
 	if (obj.x<0){
 		obj.x=0;
@@ -119,7 +119,7 @@ let circle_sprite=new Movable(circle,{"Obstacle":plat},move_circle);
 circle_sprite.initialize();
 
 
-let bird1 = new Movable(get_bird(300,100), {"Obstacle":plat}, move_bird);
+let bird1 = new Movable(get_bird(300,100,0x00ffff,1), {"Obstacle":plat}, move_bird);
 bird1.initialize();
 
 //Game Loop
