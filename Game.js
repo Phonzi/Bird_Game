@@ -61,6 +61,7 @@ function move_circle(o){
 			//obj.y=block.display.y+block.display.height;
 			o.fields["y-vel"]*=-.5;
 			o.display.y+=o.fields["y-vel"];
+			position=detectCollision(o,block);
 		}
 		if(position["right"]==0 && position["left"]==-1 && Math.abs(position["top"]+position["bottom"])<2){
 			obj.x=block.display.x-obj.width;
