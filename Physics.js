@@ -21,18 +21,18 @@
 //	Top:-1 Bottom:0 Left:0 Right:1
 //	Block 1 collided with Block 2 along Block 1's bottom left corner
 
-function detectCollision(block1,block2){
-	b1_x_l=block1.display.x;
-	b1_x_r=block1.display.x+block1.display.width;
+function detectCollisionNumerically(x_1,y_1,width_1,height_1,x_2,y_2,width_2,height_2){
+	b1_x_l=x_1;
+	b1_x_r=x_1+width_1;
 
-	b2_x_l=block2.display.x;
-	b2_x_r=block2.display.x+block2.display.width;
+	b2_x_l=x_2;
+	b2_x_r=x_2+width_2;
 
-	b1_y_t=block1.display.y;
-	b1_y_b=block1.display.y+block1.display.height;
+	b1_y_t=y_1;
+	b1_y_b=y_1+height_1;
 
-	b2_y_t=block2.display.y;
-	b2_y_b=block2.display.y+block2.display.height;
+	b2_y_t=y_2;
+	b2_y_b=y_2+height_2;
 
 	relations={
 		"top":0,
@@ -70,6 +70,24 @@ function detectCollision(block1,block2){
 		relations["bottom"]+=1;
 	}
 	return relations
+}
+
+
+
+
+function detectCollision(block1,block2){
+	x_1=block1.display.x;
+	y_1=block1.display.y;
+	width_1=block1.display.width;
+	height_1=block1.display.height;
+
+	x_2=block2.display.x;
+	y_2=block2.display.y;
+	width_2=block2.display.width;
+	height_2=block2.display.height;
+	
+	return detectCollisionNumerically(x_1,y_1,width_1,height_1,x_2,y_2,width_2,height_2);
+
 }
 
 
