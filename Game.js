@@ -10,31 +10,33 @@ circle.y=100;
 
 //Function that dictates how the circle moves
 function move_circle(o){
-
+	const maxVel = 10;
+	const xAcc = 0.3;
+	const yAcc = 0.2;
 	o.display.x+=o.fields["x-vel"];
 	o.display.y+=o.fields["y-vel"];
 
 	obj=o.display;
 	if (right_key_pressed()){
-		if (o.fields["x-vel"]<10){
-			o.fields["x-vel"]+=.2;
+		if (o.fields["x-vel"]<maxVel){
+			o.fields["x-vel"]+=xAcc;
 		}
 	}
 	if (left_key_pressed()){
-		if (o.fields["x-vel"]>-10){
-			o.fields["x-vel"]-=.2;
+		if (o.fields["x-vel"]>-1*maxVel){
+			o.fields["x-vel"]-=xAcc;
 		}
 	}
 	if (up_key_pressed()){
 		if(o.fields["grounded"]){
-			o.fields["y-vel"]=-10;
+			o.fields["y-vel"]=-1*maxVel;
 			o.fields["grounded"]=false;
 		}
 	}
 	if (o.fields["grounded"]){
 		o.fields["x-vel"]*=.98;
 	}
-	o.fields["y-vel"]+=.2;
+	o.fields["y-vel"]+=yAcc;
 	if (obj.x<0){
 		obj.x=0;
 		o.fields["x-vel"]*=-1/2;
@@ -149,7 +151,7 @@ let circle_sprite=new Movable(circle,
 circle_sprite.initialize();
 
 
-let bird1 = new Movable(get_bird(300,100,0x00ffff,1), {"Obstacle":plat}, move_bird);
+let bird1 = new Movable(get_bird(300,100,0x00ffff,1.5), {"Obstacle":plat}, move_bird);
 bird1.initialize();
 
 //Game Loop

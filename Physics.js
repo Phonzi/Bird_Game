@@ -40,7 +40,7 @@ function detectCollisionNumerically(x_1,y_1,width_1,height_1,x_2,y_2,width_2,hei
 		"bottom":0,
 		"right":0
 	}
-	
+
 	//left edge
 	if (b1_x_l < b2_x_l){
 		relations["left"]-=1;
@@ -85,12 +85,7 @@ function detectCollision(block1,block2){
 	y_2=block2.display.y;
 	width_2=block2.display.width;
 	height_2=block2.display.height;
-	
+
 	return detectCollisionNumerically(x_1,y_1,width_1,height_1,x_2,y_2,width_2,height_2);
 
 }
-
-
-
-
-

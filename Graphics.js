@@ -53,21 +53,42 @@ function get_platform(x,y,width,height,border=1){
 
 
 function get_bird(x, y, color, sc) {
+	let footStep = 64*sc;
 	let b = new PIXI.Graphics();
-	b.beginFill(color);
+	b.beginFill(0x00ffff);
 	b.lineStyle(1*sc, 0x404040, 1);
-	let x_adj=64*sc;  //  X adjustment = -1 * min(x_coordinates)
-	let y_adj=-7*sc;  //  Y adjustment = -1 * min(y_coordinates)
+	let x_adj=64;  //  X adjustment = -1 * min(x_coordinates)
+	let y_adj=10;  //  Y adjustment = -1 * min(y_coordinates)
 	const tail = [(-33+x_adj)*sc, (18+y_adj)*sc, (-57+x_adj)*sc, (7+y_adj)*sc, (-64+x_adj)*sc, (9+y_adj)*sc];
 	b.drawPolygon(tail);
-	const body = [];
-	const back = [x_adj*sc, y_adj*sc, (-43+x_adj)*sc, (18+y_adj)*sc];
-	b.drawPolygon(back);
-	b.drawCircle(x_adj*sc, y_adj*sc, 10*sc);
-	const wing = [];
-	b.beginFill(0x000000);
-	const beak = [(9+x_adj)*sc, (2+y_adj)*sc, (22+x_adj)*sc, (9+y_adj)*sc, (7+x_adj)*sc, (8+y_adj)*sc];
 	b.endFill();
+	b.beginFill(0x00ffff);
+	const body = [x_adj*sc, y_adj*sc, (-43+x_adj)*sc, (18+y_adj)*sc, (-36+x_adj)*sc, (23+y_adj)*sc, (-27+x_adj)*sc, (27+y_adj)*sc, (-16+x_adj)*sc, (28+y_adj)*sc, (-4+x_adj)*sc, (24+y_adj)*sc, (1+x_adj)*sc, (18+y_adj)*sc, (1+x_adj)*sc, (9+y_adj)*sc, x_adj*sc, y_adj*sc];
+	b.drawPolygon(body);
+	 //head
+	b.drawCircle(x_adj*sc, y_adj*sc, 10*sc);
+	b.beginFill(0x00e0e0);
+	const wing = [(-9+x_adj)*sc, (12+y_adj)*sc, (-7+x_adj)*sc, (17+y_adj)*sc, (-8+x_adj)*sc, (21+y_adj)*sc, (-13+x_adj)*sc, (25+y_adj)*sc, (-25+x_adj)*sc, (25+y_adj)*sc, (-35+x_adj)*sc, (22+y_adj)*sc, (-41+x_adj)*sc, (18+y_adj)*sc, (-9+x_adj)*sc, (12+y_adj)*sc];
+	b.drawPolygon(wing);
+	b.beginFill(0x404040);
+	const beak = [(9+x_adj)*sc, (2+y_adj)*sc, (22+x_adj)*sc, (9+y_adj)*sc, (7+x_adj)*sc, (8+y_adj)*sc];
+ 	b.drawPolygon(beak);
+	b.beginFill(0x000000);
+ 	b.drawCircle(x_adj*sc, (-1+y_adj)*sc, 2*sc);
+	b.endFill();
+ 	b.lineStyle(2*sc, 0x404040, 1);
+	b.beginFill(0x404040);
+	if (x%footStep >= 0 && x%footStep<footStep/2) { //this isn't working quite yet lol
+	  let leg1 = [(-20+x_adj)*sc, (28+y_adj)*sc, (-18+x_adj)*sc, (43+y_adj)*sc];
+	  b.drawPolygon(leg1);
+	  let leg2 = [(-15+x_adj)*sc, (28+y_adj)*sc, (-14+x_adj)*sc, (35+y_adj)*sc];
+	  b.drawPolygon(leg2);
+	} else if (x%footStep>=footStep/2 && x%footStep<footStep) {
+	  let leg1 = [(-20+x_adj)*sc, (28+y_adj)*sc, (-19+x_adj)*sc, (35+y_adj)*sc];
+	  b.drawPolygon(leg1);
+	  let leg2 = [(-15+x_adj)*sc, (28+y_adj)*sc, (-13+x_adj)*sc, (43+y_adj)*sc];
+	  b.drawPolygon(leg2);
+	}
 	b.x = x;
 	b.y = y;
 	return b;
