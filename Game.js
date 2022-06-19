@@ -53,23 +53,37 @@ function move_circle(o){
 	for (var i=0;i<blocks.length;i++){
 		block=blocks[i];
 		position=detectCollision(o,block);
-		if(position["bottom"]==0 && position["top"]==-1 && Math.abs(position["left"]+position["right"])<2){
+		//bottom corner collisions
+		if(position["bottom"]==1 && position["top"]==0 && position["right"]==0 && position["left"]==-1) {
+			obj.y=block.display.y+block.display.height;
+			if (o.fields["y-vel"]<0) {
+				o.fields["y-vel"]*=-1/2;
+			}
+		}
+		else if(position["bottom"]==1 && position["top"]==0 && position["left"]==0 && position["right"]==1) {
+			obj.y=block.display.y+block.display.height;
+			if (o.fields["y-vel"]<0) {
+				o.fields["y-vel"]*=-1/2;
+			}
+		}
+
+		else if(position["bottom"]==0 && position["top"]==-1 && Math.abs(position["left"]+position["right"])<2){
 			obj.y=block.display.y-obj.height;
 			o.fields["grounded"]=true;
 			o.fields["y-vel"]=0;
 			position=detectCollision(o,block);
 		}
-		if(position["bottom"]==1 && position["top"]==0 && Math.abs(position["left"]+position["right"])<2){
-			//obj.y=block.display.y+block.display.height;
+		else if(position["bottom"]==1 && position["top"]==0 && Math.abs(position["left"]+position["right"])<2){
+			obj.y=block.display.y+block.display.height;
 			o.fields["y-vel"]*=-.5;
-			o.display.y+=o.fields["y-vel"];
+			// o.display.y+=o.fields["y-vel"];
 			position=detectCollision(o,block);
 		}
-		if(position["right"]==0 && position["left"]==-1 && Math.abs(position["top"]+position["bottom"])<2){
+		else if(position["right"]==0 && position["left"]==-1 && Math.abs(position["top"]+position["bottom"])<2){
 			obj.x=block.display.x-obj.width;
 			o.fields["x-vel"]*=-1/2;
 		}
-		if(position["right"]==1 && position["left"]==0 && Math.abs(position["top"]+position["bottom"])<2){
+		else if(position["right"]==1 && position["left"]==0 && Math.abs(position["top"]+position["bottom"])<2){
 			obj.x=block.display.x+block.display.width;
 			o.fields["x-vel"]*=-1/2;
 		}
