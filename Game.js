@@ -97,10 +97,22 @@ function move_bird(b) {
 	obj=b.display;
 
 	if (right_key_pressed()){
-		obj.x+=speed;
+		x_t=obj.x;
+		y_t=obj.y;
+		obj.clear()
+		b.display=get_bird(x_t,y_t,0x00ffff,1.5,false);
+		b.initialize();
+		b.display.x+=speed;
+		obj=b.display;
 	}
 	else if (left_key_pressed()){
-		obj.x-=speed;
+		x_t=obj.x;
+		y_t=obj.y;
+		obj.clear()
+		b.display=get_bird(x_t,y_t,0x00ffff,1.5,true);
+		b.initialize();
+		b.display.x-=speed;
+		obj=b.display;
 	}
 	if (up_key_pressed()){
 		obj.y-=speed;
