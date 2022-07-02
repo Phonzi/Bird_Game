@@ -53,7 +53,7 @@ function get_platform(x,y,width,height,border=1){
 
 
 function get_bird(x, y, color, sc,reversed=false) {
-	let footStep = 64*sc;
+	let footStep = 100*sc;
 	let b = new PIXI.Graphics();
 	b.beginFill(0x00ffff);
 	b.lineStyle(1*sc, 0x404040, 1);

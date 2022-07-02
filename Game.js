@@ -92,7 +92,7 @@ function move_circle(o){
 
 //Function for bird movement (I know the bird doesn't look like a bird yet lol) - mostly uses code from circle movement for now
 function move_bird(b) {
-	let speed=12;
+	let speed=6;
 
 	obj=b.display;
 
