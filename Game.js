@@ -90,17 +90,24 @@ function move_circle(o){
 	}
 }
 
-//Function for bird movement (I know the bird doesn't look like a bird yet lol) - mostly uses code from circle movement for now
+//Function for bird movement
 function move_bird(b) {
 	let speed=6;
 
 	obj=b.display;
 
+	color_circle=b.fields["Color_circle"];
+	position=detectCollision(b,color_circle);
+	if((position["right"]==0 && position["left"]==-1 && Math.abs(position["top"]+position["bottom"])<2) || (position["right"]==1 && position["left"]==0 && Math.abs(position["top"]+position["bottom"])<2) || (position["bottom"]==0 && position["top"]==-1 && Math.abs(position["left"]+position["right"])<2) || (position["bottom"]==1 && position["top"]==0 && Math.abs(position["left"]+position["right"])<2)) {
+		b.fields["Color"] = color_circle.fields["Color"];
+		app.stage.removeChild(color_circle.display);
+	}
+
 	if (right_key_pressed()){
 		x_t=obj.x;
 		y_t=obj.y;
-		obj.clear()
-		b.display=get_bird(x_t,y_t,0x00ffff,1.5,false);
+		obj.clear();
+		b.display=get_bird(x_t,y_t,b.fields["Color"],1.5,false);
 		b.initialize();
 		b.display.x+=speed;
 		obj=b.display;
@@ -108,8 +115,8 @@ function move_bird(b) {
 	else if (left_key_pressed()){
 		x_t=obj.x;
 		y_t=obj.y;
-		obj.clear()
-		b.display=get_bird(x_t,y_t,0x00ffff,1.5,true);
+		obj.clear();
+		b.display=get_bird(x_t,y_t,b.fields["Color"],1.5,true);
 		b.initialize();
 		b.display.x-=speed;
 		obj=b.display;
@@ -163,6 +170,9 @@ plat3.initialize();
 let plat4=new Block(get_platform(650,200,80,25));
 plat4.initialize();
 
+let color_circle1 = new Component(get_color_circle(400, 400, 0xff0000), {"Color": 0xff0000});
+color_circle1.initialize();
+
 //let plat3=new Block(get_platform(0,775,900,5));
 //plat2.initialize();
 
@@ -177,7 +187,7 @@ let circle_sprite=new Movable(circle,
 circle_sprite.initialize();
 
 
-let bird1 = new Movable(get_bird(300,100,0x00ffff,1.5), {"Obstacle":plat, "right": false, "left": false}, move_bird);
+let bird1 = new Movable(get_bird(300,100,0x00ffff,1.5), {"Obstacle":plat, "right": false, "left": false, "Color_circle": color_circle1, "Color": 0x00ffff}, move_bird);
 bird1.initialize();
 
 //Game Loop

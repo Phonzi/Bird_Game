@@ -27,4 +27,3 @@ class Movable extends Component{
 		this.movement(this);
 	}
 }
-
