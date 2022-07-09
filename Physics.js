@@ -76,15 +76,15 @@ function detectCollisionNumerically(x_1,y_1,width_1,height_1,x_2,y_2,width_2,hei
 
 
 function detectCollision(block1,block2){
-	x_1=block1.display.x;
-	y_1=block1.display.y;
-	width_1=block1.display.width;
-	height_1=block1.display.height;
+	x_1=block1.x;
+	y_1=block1.y;
+	width_1=block1.width;
+	height_1=block1.height;
 
-	x_2=block2.display.x;
-	y_2=block2.display.y;
-	width_2=block2.display.width;
-	height_2=block2.display.height;
+	x_2=block2.x;
+	y_2=block2.y;
+	width_2=block2.width;
+	height_2=block2.height;
 
 	return detectCollisionNumerically(x_1,y_1,width_1,height_1,x_2,y_2,width_2,height_2);
 
