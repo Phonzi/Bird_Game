@@ -9,12 +9,15 @@ class Construct{
 		this.draw_params={};
 		this.graphic_function;
 		this.graphic=null;
+		this.type="";
 	}
 	draw(){
-		if (this.graphic!=null) this.graphic.clear();
-		this.graphic=this.graphic_function(this.draw_params);
-		app.stage.addChild(this.graphic);
-		this.align_graphic();
+		if (!(this.graphic==null)) this.graphic.clear();
+		if (this.graphic_function!=null){
+			this.graphic=this.graphic_function(this.draw_params);
+			app.stage.addChild(this.graphic);
+			this.align_graphic();
+		}
 	}
 	align_graphic(){
 		this.graphic.x=this.x;
@@ -32,12 +35,23 @@ class Physical extends Construct{
 	}
 }
 
+function construct_color(x,y,color){
+	circle = new Construct();
+	circle.type="Color";
+	circle.draw_params={"color":color};
+	circle.graphic_function=get_color_circle;
+	circle.x=x;
+	circle.y=y;
+	return circle;
+}
+
 function construct_block(x,y,width){
 	block = new Construct();
 	block.x=x;
 	block.y=y;
 	block.draw_params={"width":width,"height":10};
 	block.graphic_function=get_platform;
+	block.type="block";
 	return block;
 }
 

@@ -24,10 +24,10 @@ function get_bird(params) {
 	x=params["x"];
 	y=0;
 	reversed=params["reversed"];
-	color="#00ffff";
+	color=params["color"];
 	let footStep = 100*sc;
 	let b = new PIXI.Graphics();
-	b.beginFill(0x00ffff);
+	b.beginFill(color);
 	b.lineStyle(1*sc, 0x404040, 1);
 	let x_adj=64;  //  X adjustment = -1 * min(x_coordinates)
 	let y_adj=10;  //  Y adjustment = -1 * min(y_coordinates)
@@ -47,7 +47,7 @@ function get_bird(params) {
 	const tail = flip([(-33+x_adj)*sc, (18+y_adj)*sc, (-57+x_adj)*sc, (7+y_adj)*sc, (-64+x_adj)*sc, (9+y_adj)*sc]);
 	b.drawPolygon(tail);
 	b.endFill();
-	b.beginFill(0x00ffff);
+	b.beginFill(color);
 	const body = flip([x_adj*sc, y_adj*sc, (-43+x_adj)*sc, (18+y_adj)*sc, (-36+x_adj)*sc, (23+y_adj)*sc, (-27+x_adj)*sc, (27+y_adj)*sc, (-16+x_adj)*sc, (28+y_adj)*sc, (-4+x_adj)*sc, (24+y_adj)*sc, (1+x_adj)*sc, (18+y_adj)*sc, (1+x_adj)*sc, (9+y_adj)*sc, x_adj*sc, y_adj*sc]);
 	b.drawPolygon(body);
 	 //head
@@ -55,7 +55,7 @@ function get_bird(params) {
 		b.drawCircle(x_adj-x_adj*sc, y_adj*sc, 10*sc);
 	else
 		b.drawCircle(x_adj*sc, y_adj*sc, 10*sc);
-	b.beginFill(0x00e0e0);
+	b.beginFill(color);
 	const wing = flip([(-9+x_adj)*sc, (12+y_adj)*sc, (-7+x_adj)*sc, (17+y_adj)*sc, (-8+x_adj)*sc, (21+y_adj)*sc, (-13+x_adj)*sc, (25+y_adj)*sc, (-25+x_adj)*sc, (25+y_adj)*sc, (-35+x_adj)*sc, (22+y_adj)*sc, (-41+x_adj)*sc, (18+y_adj)*sc, (-9+x_adj)*sc, (12+y_adj)*sc]);
 	b.drawPolygon(wing);
 	b.beginFill(0x404040);
@@ -84,3 +84,13 @@ function get_bird(params) {
 	b.y = y;
 	return b;
 }
+
+
+function get_color_circle(params) {
+	let circle = new PIXI.Graphics();
+	circle.beginFill(params["color"]);
+	circle.drawCircle(0, 0, 10);
+	return circle;
+}
+
+

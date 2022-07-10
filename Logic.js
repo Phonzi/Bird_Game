@@ -38,12 +38,25 @@ function move_level(level,obj){
 	for(var i=0;i<level.components.length;i++){
 		collis1=detectCollision(obj,level.components[i]);
 		collis2=detectCollision(level.components[i],obj);
-		if(level.vY<0 && collis2["top"]==0 && (collis1["left"]==0 || collis1["right"]==0)){
+		if(level.vY<0 && collis2["top"]==0 && (collis1["left"]==0 || collis1["right"]==0)
+			&& level.components[i].type=="block"){
 			level.grounded=true;
 			first=obj.y+obj.height;
 			current=level.components[i].y
 			diff=first-current;
 			level.changeY(diff);
+		}
+	}
+	//Change Color
+	for(var i=level.components.length-1;i>=0;i--){
+		if(level.components[i].type=="Color"){
+			collis=detectCollision(obj,level.components[i]);
+			if(Math.abs(collis["left"]+collis["right"])<2 && Math.abs(collis["bottom"]+collis["top"])<2){
+				obj.draw_params["color"]=level.components[i].draw_params["color"];
+				level.components[i].type="Empty";
+				level.components[i].graphic.clear();
+				level.components[i].graphic_function=null;
+			}
 		}
 	}
 	level.vY-=acc_down;
