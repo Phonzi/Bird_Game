@@ -71,7 +71,7 @@ function isGoalState(state){
  * 	It checks how quickly the starting_state can be transformed into a goal state using changeState
  *
  * 	Using the current changeState and isGoalState functions, it will find the minimum number of elements that
- * 	must be removed from an array to get be left with an array where the values all add together to 7
+ * 	must be removed from an array to be left with an array where the values all add together to 7
  *
  * 	Example:
  * 		starting_state=[2,3,5,9]
