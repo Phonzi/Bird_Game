@@ -29,7 +29,7 @@ bird.y=300;
 plats=[construct_block(0,800,900)];
 
 y=600;
-for(var i=0;i<5;i++){
+for(var i=0;i<30;i++){
 	width=Math.floor(Math.random()*400)+50;
 	x=Math.floor(Math.random()*(900-width));
 	y_offset=Math.floor(Math.random()*60)-30;
@@ -38,7 +38,7 @@ for(var i=0;i<5;i++){
 }
 
 y=600;
-for(var i=0;i<5;i++){
+for(var i=0;i<30;i++){
 	colors=[0xff0000,0x0000ff,0xffffff];
 	x=Math.floor(Math.random()*900);
 	y_offset=Math.floor(Math.random()*60)-30;

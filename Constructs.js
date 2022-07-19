@@ -12,7 +12,10 @@ class Construct{
 		this.type="";
 	}
 	draw(){
-		if (!(this.graphic==null)) this.graphic.clear();
+		if (!(this.graphic==null)){
+			app.stage.removeChild(this.graphic);
+			this.graphic.clear();
+		}
 		if (this.graphic_function!=null){
 			this.graphic=this.graphic_function(this.draw_params);
 			app.stage.addChild(this.graphic);
