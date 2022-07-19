@@ -17,6 +17,15 @@ function get_platform(params){
 	return graphics;
 }
 
+function get_feet_block(params){
+	let w=10;
+	let h=60;
+	let graphics=new PIXI.Graphics()
+	graphics.beginFill(0x000000);
+	graphics.drawRect(0,0,w,h);
+	return graphics;
+}
+
 
 
 function get_bird(params) {

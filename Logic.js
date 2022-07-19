@@ -27,7 +27,7 @@ function move_obj(object){
 	object.draw_params["x"]=object.x;
 }
 
-function move_level(level,obj){
+function move_level(level,obj,feet){
 	speed_up=20;
 	acc_down=.4;
 	if (up_key_pressed() && level.grounded){
@@ -36,8 +36,8 @@ function move_level(level,obj){
 	}
 	level.grounded=false;
 	for(var i=0;i<level.components.length;i++){
-		collis1=detectCollision(obj,level.components[i]);
-		collis2=detectCollision(level.components[i],obj);
+		collis1=detectCollision(feet,level.components[i]);
+		collis2=detectCollision(level.components[i],feet);
 		if(level.vY<0 && collis2["top"]==0 && (collis1["left"]==0 || collis1["right"]==0)
 			&& level.components[i].type=="block"){
 			level.grounded=true;
@@ -66,7 +66,21 @@ function move_level(level,obj){
 	level.changeY(level.vY);
 }
 
-
+function move_feet_block(feet,bird){
+	w=feet.width;
+	h=feet.height;
+	x=bird.x;
+	y=bird.y;
+	bW=bird.width;
+	bH=bird.height;
+	if (bird.draw_params["reversed"]){
+		feet.x=x+bW/2-w/2-23;
+		feet.y=y+bH-h;
+	} else {
+		feet.x=x+bW/2-w/2;
+		feet.y=y+bH-h;
+	}
+}
 
 
 
