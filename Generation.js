@@ -18,12 +18,29 @@
  *
  */
 function arraysEqual(arr1,arr2){
-
+	if (arr1.length != arr2.length) {
+		return false;
+	} else {
+		for (let i = 0; i < arr1.length; i++) {
+			if (arr1[i] instanceof Array && arr2[i] instanceof Array) {
+				if (!arraysEqual(arr1[i], arr2[i])) {
+					return false;
+				}
+			} else if (!(arr1[i] instanceof Array) && !(arr2[i] instanceof Array)) {
+				if (arr1[i] != arr2[i]) {
+					return false;
+				}
+			} else {
+				return false;
+			}
+		}
+		return true;
+	}
 }
 
 /*
  * A function that returns arrays representing every element removed from the array passed in
- * 
+ *
  * Params:
  * 	state: Single Dimensional Array containing only integers
  * Returns
@@ -34,12 +51,22 @@ function arraysEqual(arr1,arr2){
  * 	changeState([1,2,3,4])->[[2,3,4],[1,3,4],[1,2,4],[1,2,3]]
  */
 function changeState(state){
-
+	let returnArr = [];
+	for (let i = 0; i < state.length; i++) {
+		let subArr = [];
+		for (let j = 0; j < state.length; j++) {
+			if (i != j) {
+				subArr.push(state[j]);
+			}
+		}
+		returnArr.push(subArr);
+	}
+	return returnArr;
 }
 
 /*
  * A function that takes in one array and determines whether it qualifies as a "Goal State"
- * 
+ *
  * Params:
  * 	state: Single Dimensional Array containing only integers
  * Returns:
@@ -111,5 +138,5 @@ function output(val){
 
 output("Hello")
 output("World!")
-
-
+let a = changeState([1,2,3,4,5,6]);
+output(a);
