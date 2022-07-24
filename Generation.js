@@ -136,7 +136,7 @@ function getSum(arr) {
 	return sum;
 }
 
-// Helper function 2: finds the minimum value in a single-dimensional, non-empty integer array, ignoring negative numbers (just -1 for this case). If there are no non-negative numbers, it returns -1.
+// Helper function 2 (only needed for Solution 1 below): finds the minimum value in a single-dimensional, non-empty integer array, ignoring negative numbers (just -1 for this case). If there are no non-negative numbers, it returns -1.
 function getNonNegMin(arr) {
 	let min = arr[0];
 	for (let i = 1; i < arr.length; i++) {
@@ -147,6 +147,29 @@ function getNonNegMin(arr) {
 	return min >= 0 ? min : -1;
 }
 
+//
+
+//Solution 1
+// function distanceToGoalState(starting_state){
+// 	if (isGoalState(starting_state)) {
+// 		return 0;
+// 	} else if (getSum(starting_state)<7 || (starting_state.length==1 && getSum(starting_state)>7)) {
+// 		return -1;
+// 	} else {
+// 		let stateSplit = changeState(starting_state);
+// 		let steps = [];
+// 		for (let i = 0; i < stateSplit.length; i++) {
+// 			steps.push(distanceToGoalState(stateSplit[i]));
+// 		}
+// 		if (getNonNegMin(steps) == -1) {
+// 			return -1;
+// 		} else {
+// 			return getNonNegMin(steps) + 1;
+// 		}
+// 	}
+// }
+
+//Solution 2, optimized version of Solution 1 I think?
 function distanceToGoalState(starting_state){
 	if (isGoalState(starting_state)) {
 		return 0;
@@ -154,15 +177,16 @@ function distanceToGoalState(starting_state){
 		return -1;
 	} else {
 		let stateSplit = changeState(starting_state);
-		let steps = [];
+		let minInd = 0;
+		let sumArr = [];
 		for (let i = 0; i < stateSplit.length; i++) {
-			steps.push(distanceToGoalState(stateSplit[i]));
+			sumArr.push(getSum(stateSplit[i]));
+			if (sumArr[i] < sumArr[minInd] && sumArr[i] >= 7) {
+				minInd = i;
+			}
 		}
-		if (getNonNegMin(steps) == -1) {
-			return -1;
-		} else {
-			return getNonNegMin(steps) + 1;
-		}
+		let steps = distanceToGoalState(stateSplit[minInd]);
+		return (steps == -1) ? -1 : steps+1;
 	}
 }
 
@@ -177,4 +201,4 @@ function output(val){
 
 output("Hello")
 output("World!")
-output(distanceToGoalState([1,2,2,5,7]));
+output(distanceToGoalState([1,1,1,1,1,1,7]));
