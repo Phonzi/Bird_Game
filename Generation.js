@@ -82,7 +82,11 @@ function changeState(state){
  *
  */
 function isGoalState(state){
-
+	let sum = 0;
+	for (let i = 0; i < state.length; i++) {
+		sum += state[i];
+	}
+	return sum == 7;
 }
 
 /*
@@ -106,7 +110,7 @@ function isGoalState(state){
  * 		choosing state = [2,3,5]
  * 		isGoalState(state) -> false
  * 		changeState([2,3,5]) -> [ [3,5], [2,5], [2,3] ]
- * 		chooing state = [2,5]
+ * 		choosing state = [2,5]
  * 		isGoalState(state) -> true
  * 		starting state reached goal state in minimum of 2 operations [2,3,5,9] -> [2,3,5] -> [2,5]
  * 		returns 2
@@ -123,8 +127,43 @@ function isGoalState(state){
  *
  */
 
-function distanceToGoalState(starting_state){
+// Helper function 1: finds the sum of a single-dimensional integer array
+function getSum(arr) {
+	let sum = 0;
+	for (let i = 0; i < arr.length; i++) {
+		sum += arr[i];
+	}
+	return sum;
+}
 
+// Helper function 2: finds the minimum value in a single-dimensional, non-empty integer array, ignoring negative numbers (just -1 for this case). If there are no non-negative numbers, it returns -1.
+function getNonNegMin(arr) {
+	let min = arr[0];
+	for (let i = 1; i < arr.length; i++) {
+		if ((arr[i] >= 0 && min < 0) || (arr[i] >=0 && arr[i] < min)) {
+			min = arr[i];
+		}
+	}
+	return min >= 0 ? min : -1;
+}
+
+function distanceToGoalState(starting_state){
+	if (isGoalState(starting_state)) {
+		return 0;
+	} else if (getSum(starting_state)<7 || (starting_state.length==1 && getSum(starting_state)>7)) {
+		return -1;
+	} else {
+		let stateSplit = changeState(starting_state);
+		let steps = [];
+		for (let i = 0; i < stateSplit.length; i++) {
+			steps.push(distanceToGoalState(stateSplit[i]));
+		}
+		if (getNonNegMin(steps) == -1) {
+			return -1;
+		} else {
+			return getNonNegMin(steps) + 1;
+		}
+	}
 }
 
 
@@ -138,5 +177,4 @@ function output(val){
 
 output("Hello")
 output("World!")
-let a = changeState([1,2,3,4,5,6]);
-output(a);
+output(distanceToGoalState([1,2,2,5,7]));
