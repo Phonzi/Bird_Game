@@ -201,4 +201,4 @@ function output(val){
 
 output("Hello")
 output("World!")
-output(distanceToGoalState([1,1,1,1,1,1,7]));
+output(distanceToGoalState([1,2,2,5,7]));
